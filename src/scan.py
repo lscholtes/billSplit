@@ -31,7 +31,7 @@ def parse_and_clean(receipt_image: io.BytesIO) -> Receipt:
     psm = 6 if alternate_psm else 4
 
     parsed_text = parse_cropped_image(receipt_image, psm=psm)
-    cleaned_text = st.text_area("Parsed Text, please clean", parsed_text, height=50)
+    cleaned_text = st.text_area("Parsed Text, please clean", parsed_text, height=500)
 
     receipt = Receipt.parse_receipt_text(cleaned_text)
 
