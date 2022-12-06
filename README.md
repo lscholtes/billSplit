@@ -19,12 +19,13 @@ BillSplit is a (fairly mobile-friendly) streamlit app.
 
 The Streamlit Cloud deployment of this app available [here](https://billsplit.streamlit.app/).
 
----
-
 ## Mobile Screenshots
 
-[Upload page](resources/screenshot_upload.png)
-[Scan page](resources/screenshot_scan.png)
-[Friends page](resources/screenshot_friends.png)
-[Split page](resources/screenshot_split.png)
-[Summary page](resources/screenshot_summary.png)
+<pre>
+  <p align="center">
+    <img src="resources/screenshot_upload.png" alt="drawing" width="280"/>     <img src="resources/screenshot_scan.png" alt="drawing" width="280"/>     <img src="resources/screenshot_friends.png" alt="drawing" width="280"/> 
+    
+    
+    <img src="resources/screenshot_split.png" alt="drawing" width="280"/>     <img src="resources/screenshot_summary.png" alt="drawing" width="280"/> 
+  </p>
+</pre>
