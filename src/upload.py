@@ -8,7 +8,7 @@ from streamlit_cropper import st_cropper
 def upload_and_crop() -> Union[Image.Image, None]:
 
     with st.expander("File Upload"):
-        st.markdown("Please upload a top-down image of the receipt with good lighting")
+        st.markdown("Please upload a top-down image of the receipt with good lighting.")
         st.markdown(
             "**Note:** Mobile users should upload a pre-cropped image \
             that shows only the actual receipt items - in-app cropping on \
