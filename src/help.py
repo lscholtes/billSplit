@@ -6,8 +6,8 @@ HELP_TEXT = """
 BillSplit helps you split long bills between your friends:
 
 1) 📷 Upload a picture of the bill. It helps if the picture shows only the \
-    line items on the receipt! 
-2) 🤖 The app uses an AI algorithm\* to scan the picture and extract all \
+    line items on the receipt!
+2) 🤖 The app uses an AI algorithm* to scan the picture and extract all \
     available text.
 3) 🖹 In the *Scan* tab, the extracted text is shown. At this point it's up to \
     you to fix any obvious mistakes, like incorrect prices or formatting. The \
@@ -29,8 +29,9 @@ BillSplit helps you split long bills between your friends:
     `Alternate OCR PSM` checkbox. This runs the text recognition AI slightly \
     differently and sometimes yields improved results.
 
-*\* Tesseract 4 OCR engine*
+* \* Tesseract 4 OCR engine*
 """
+
 
 def display_help():
     st.markdown(HELP_TEXT)
