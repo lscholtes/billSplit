@@ -9,9 +9,11 @@ def upload_and_crop() -> Union[Image.Image, None]:
 
     with st.expander("File Upload"):
         st.markdown("Please upload a top-down image of the receipt with good lighting")
-        st.markdown("**Note:** Mobile users should upload a pre-cropped image \
+        st.markdown(
+            "**Note:** Mobile users should upload a pre-cropped image \
             that shows only the actual receipt items - in-app cropping on \
-            mobile is coming soon."""
+            mobile is coming soon."
+            ""
         )
         receipt_image = st.file_uploader("Upload image")
         crop_image = st.checkbox(
@@ -30,7 +32,7 @@ def upload_and_crop() -> Union[Image.Image, None]:
         # with left:
         st.markdown("Original image")
         cropped_image = st_cropper(receipt_image)
-    # with right:
+        # with right:
         st.markdown("Line entries only")
         st.image(cropped_image)
         return cropped_image
