@@ -6,7 +6,6 @@ from src.split import split_bill
 from src.summary import summarize
 from src.upload import upload_and_crop
 
-
 upload_tab, scan_tab, friends_tab, split_tab, summary_tab = st.tabs(
     ["Upload", "Scan", "Friends", "Split", "Summary"]
 )

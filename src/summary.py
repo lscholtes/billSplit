@@ -2,7 +2,7 @@ from typing import List, Union
 
 import streamlit as st
 
-from src.models import Receipt, Friend, Claim, LineEntry
+from src.models import Claim, Friend, LineEntry, Receipt
 
 
 def filter_claims_for_claimant(

@@ -1,8 +1,8 @@
 import io
 
-from PIL import Image
 import pytesseract
 import streamlit as st
+from PIL import Image
 
 from src.models import Receipt
 

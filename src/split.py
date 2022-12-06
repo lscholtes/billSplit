@@ -1,8 +1,9 @@
-import streamlit as st
-from typing import List, Union
 from dataclasses import dataclass
+from typing import List, Union
 
-from src.models import Receipt, LineEntry, Friend, Claim
+import streamlit as st
+
+from src.models import Claim, Friend, LineEntry, Receipt
 
 
 @dataclass

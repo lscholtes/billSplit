@@ -1,6 +1,7 @@
-import streamlit as st
-from typing import List
 import re
+from typing import List
+
+import streamlit as st
 
 from src.models import Friend
 

@@ -1,7 +1,7 @@
 from typing import Union
 
-from PIL import Image
 import streamlit as st
+from PIL import Image
 from streamlit_cropper import st_cropper
 
 
