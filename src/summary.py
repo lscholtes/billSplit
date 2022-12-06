@@ -32,17 +32,13 @@ def get_total_cost_for_friend(items: List[LineEntry], friend: Friend) -> float:
 
 def summarize(receipt: Receipt, friends: List[Friend]):
     
-    # Add a tip? 
-    # Assume even split, but give option to split unevenly,
-    # if splitting unevenly, prefill portion fields with each participants' total cost
-
     total_cost_without_tip = sum(item.item_cost for item in receipt.line_entries if item.is_valid)
     st.markdown(f"**Total cost, without tip:** £{total_cost_without_tip:.2f}")
 
-    tip_checbox_col, tip_amount_col, _ = st.columns([1,1,5])
+    tip_checbox_col, tip_amount_col, _ = st.columns([1,1,3])
 
     with tip_checbox_col:
-        add_tip = st.selectbox(
+        add_tip = st.radio(
             "Add tip?", ["No tip", "Even split", "Custom split"]
         )
     
@@ -85,23 +81,13 @@ def summarize(receipt: Receipt, friends: List[Friend]):
     st.markdown(f"## Total cost: £{total_cost:.2f}")
 
     if total_claimed != total_cost:
-        st.markdown(f"### Careful, the amount claimed, £{total_claimed:.2f}, does not match the total bill amount!")
-
-    name_column, cost_column, items_column = st.columns([3, 1, 5])
-    with name_column:
-        st.markdown("**Name**")
-    with cost_column:
-        st.markdown("**Total Cost**")
-    with items_column:
-        st.markdown("**Items Claimed**")
+        st.markdown(f"""
+            **Careful! The amount claimed, £{total_claimed:.2f}, does not match the total bill amount.** \
+            *Make sure all items have been claimed on the Split tab.*
+        """)
 
     for friend in friends:
         items_claimed = get_items_claimed_for_friend(receipt, friend)
         total_cost = get_total_cost_for_friend(items_claimed, friend)
 
-        with name_column:
-            st.markdown(friend.name)
-        with cost_column:
-            st.markdown(f"£{total_cost:.2f}")
-        with items_column:
-            st.markdown(', '.join([item.item_name for item in items_claimed]))
+        st.markdown(f"{friend.name} | **£{total_cost:.2f}** | {', '.join([item.item_name for item in items_claimed])}")
