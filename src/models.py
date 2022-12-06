@@ -37,19 +37,21 @@ class LineEntry:
         price_regex = rf'({decimal_number_regex})(?!.*{decimal_number_regex})'
         # We use tuple unpacking to check that there is only one match
         price_match = re.search(price_regex, line_entry_str)
-        print(price_match.groups())
         if price_match is None:  # If no matches are found, just return an object marked as invalid
             return cls(is_valid=False)
         (price_str, ) = price_match.groups()
 
-        # Convert commas to decimal points, remove any whitespace
-        price = float(price_str.replace(",", ".").replace(" ", ""))
+        try:
+            # Convert commas to decimal points, remove any whitespace
+            price = float(price_str.replace(",", ".").replace(" ", ""))
+        except ValueError:
+            # If for some reason we still can't convert to float, just mark as invalid
+            return cls(is_valid=False)
         
         # Once we've grabbed the price, assume that everything that comes before the last occurence of the
         # price is the item name.
         name_regex = fr'(.*){price_str}'
         name_match = re.search(name_regex, line_entry_str)
-        print(name_match.groups())
         if name_match is None:
             return cls(is_valid=False)
         (name, ) = name_match.groups()
