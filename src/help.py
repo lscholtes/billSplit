@@ -29,7 +29,13 @@ BillSplit helps you split long bills between your friends:
     `Alternate OCR PSM` checkbox. This runs the text recognition AI slightly \
     differently and sometimes yields improved results.
 
-* \* Tesseract 4 OCR engine*
+---
+
+Source code for BillSplit can be found [here](https://github.com/lscholtes/billSplit).
+
+---
+
+*\* Tesseract 4 OCR engine*
 """
 
 
