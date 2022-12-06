@@ -7,7 +7,9 @@ from src.summary import summarize
 from src.upload import upload_and_crop
 
 
-upload_tab, scan_tab, friends_tab, split_tab, summary_tab = st.tabs(["Upload", "Scan", "Friends", "Split", "Summary"])
+upload_tab, scan_tab, friends_tab, split_tab, summary_tab = st.tabs(
+    ["Upload", "Scan", "Friends", "Split", "Summary"]
+)
 
 with upload_tab:
     receipt_image = upload_and_crop()

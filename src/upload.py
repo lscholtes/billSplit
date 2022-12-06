@@ -10,14 +10,13 @@ def upload_and_crop() -> Union[Image.Image, None]:
     with st.expander("File Upload"):
         receipt_image = st.file_uploader("Upload image")
         crop_image = st.checkbox(
-            "Crop image?", 
-            help="Picture should contain receipt line entries only. MOBILE USERS, please pre-crop any uploaded pictures, do not use this option."
+            "Crop image?",
+            help="Picture should contain receipt line entries only. MOBILE USERS, please pre-crop any uploaded pictures, do not use this option.",
         )
         if receipt_image is None:
             return
 
     receipt_image = Image.open(receipt_image)
-
 
     if crop_image:
         left, right = st.columns([2, 1])

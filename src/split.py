@@ -14,7 +14,7 @@ class ColumnSpec:
 SPLIT_COLUMNS = [
     ColumnSpec(name="Item", width=3),
     ColumnSpec(name="Claimants", width=2),
-    ColumnSpec(name="Uneven split?", width=1)
+    ColumnSpec(name="Uneven split?", width=1),
 ]
 
 
@@ -45,10 +45,10 @@ def create_line_entry(entry: LineEntry, friends: List[Friend]):
 
     with columns["Claimants"]:
         claimants_names = st.multiselect(
-            "Claimants", 
-            [f.name for f in friends], 
-            # label_visibility="collapsed", 
-            key=f"claimants_{entry.item_name}"
+            "Claimants",
+            [f.name for f in friends],
+            # label_visibility="collapsed",
+            key=f"claimants_{entry.item_name}",
         )
         claimants = [
             filter_friend_from_name(friends, claimant_name)
@@ -64,7 +64,7 @@ def create_line_entry(entry: LineEntry, friends: List[Friend]):
             claim.portion = st.number_input(
                 claim.claimant.name,
                 value=1,
-                key=f"prop_{claim.claimant.name}_{entry.item_name}"
+                key=f"prop_{claim.claimant.name}_{entry.item_name}",
             )
     else:
         for claim in entry.claims:
