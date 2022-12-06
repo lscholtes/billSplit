@@ -29,17 +29,18 @@ class LineEntry:
         
     @classmethod
     def parse_line_entry_str(cls, line_entry_str: str):        
+        
         # Assume that the last number with two decimal places in the line is the total price for that entry.
-        # Here, \d+(?:\.|,| )*\d{2} matches anything that looks like a number with two decimal places. 
-        # This is followed up by a negative lookahead for the same thing, so that we match only the last 
-        # occurence of this in the line.
-        decimal_number_regex = r'\d+(?: *(?:\.|,) *)+\d{2}'
-        price_regex = rf'({decimal_number_regex})(?!.*{decimal_number_regex})'
-        # We use tuple unpacking to check that there is only one match
-        price_match = re.search(price_regex, line_entry_str)
-        if price_match is None:  # If no matches are found, just return an object marked as invalid
-            return cls(is_valid=False)
-        (price_str, ) = price_match.groups()
+        # Note that we reverse the string to search from the end
+        line_entry_str_rev = line_entry_str[::-1]
+        price_regex = r'\d{2}(?: *(?:\.|,) *)+\d*'
+        price_matches = re.findall(price_regex, line_entry_str_rev)
+
+        if not price_matches:
+            return cls(is_valid=False) 
+        else:
+            # Grab the first match found in the reversed string and reverse it again to get the original number
+            price_str = price_matches[0][::-1]
 
         try:
             # Convert commas to decimal points, remove any whitespace
