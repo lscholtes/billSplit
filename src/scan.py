@@ -3,7 +3,6 @@ import io
 from PIL import Image
 import pytesseract
 import streamlit as st
-from streamlit_cropper import st_cropper
 
 from src.models import Receipt
 
@@ -26,12 +25,13 @@ def parse_cropped_image(cropped_image: Image, psm: int) -> str:
 
 def parse_and_clean(receipt_image: io.BytesIO) -> Receipt:
 
-    # This should be False by default, usually OCR works better for receipts with psm=4
+    # This should be False by default, usually OCR works better
+    # for receipts with psm=4
     alternate_psm = st.checkbox("Alternate OCR PSM")
     psm = 6 if alternate_psm else 4
 
     parsed_text = parse_cropped_image(receipt_image, psm=psm)
-    cleaned_text = st.text_area("Parsed Text, please clean", parsed_text, height=500)
+    cleaned_text = st.text_area("Parsed Text, please clean", parsed_text, height=50)
 
     receipt = Receipt.parse_receipt_text(cleaned_text)
 

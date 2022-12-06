@@ -11,7 +11,9 @@ def upload_and_crop() -> Union[Image.Image, None]:
         receipt_image = st.file_uploader("Upload image")
         crop_image = st.checkbox(
             "Crop image?",
-            help="Picture should contain receipt line entries only. MOBILE USERS, please pre-crop any uploaded pictures, do not use this option.",
+            help="Picture should contain receipt line entries only. \
+                MOBILE USERS, please pre-crop any uploaded pictures, \
+                do not use this option.",
         )
         if receipt_image is None:
             return

@@ -24,6 +24,7 @@ streamlit-cropper = "^0.2.0"
 ipython = "^8.7.0"
 jupyter = "^1.0.0"
 black = "^22.10.0"
+flake8 = "^6.0.0"
 
 [build-system]
 requires = ["poetry-core"]

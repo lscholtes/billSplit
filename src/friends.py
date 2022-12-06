@@ -13,6 +13,7 @@ def parse_friends() -> List[Friend]:
     )
     friends = [
         Friend(name=name.strip())
-        for name in re.split("\n|,", friends_str)  # Split list by commas and newlines
+        # Split list by commas and newlines
+        for name in re.split("\n|,", friends_str)
     ]
     return friends

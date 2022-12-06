@@ -14,7 +14,7 @@ def filter_claims_for_claimant(
     elif len(matching_claims) == 0:
         return None
     else:
-        return ValueError(f"{len(matching_claims)} claims found with {friend=}")
+        raise ValueError(f"{len(matching_claims)} claims found with {friend=}")
 
 
 def get_items_claimed_for_friend(receipt: Receipt, friend: Friend) -> List[LineEntry]:
@@ -64,7 +64,9 @@ def summarize(receipt: Receipt, friends: List[Friend]):
 
     if add_tip == "Custom split":
         st.markdown(
-            "_Quick Tip: The fields below are pre-filled with the amount all participants paid -  this means each diner pays a tip precisely on what they bought._"
+            "_Quick Tip: The fields below are pre-filled with the amount all \
+            participants paid -  this means each diner pays a tip \
+            precisely on what they bought._"
         )
 
         tip_line_entry = LineEntry(item_name="Tip", item_cost=total_tip, claims=[])
@@ -99,10 +101,9 @@ def summarize(receipt: Receipt, friends: List[Friend]):
 
     if total_claimed != total_cost:
         st.markdown(
-            f"""
-            **Careful! The amount claimed, £{total_claimed:.2f}, does not match the total bill amount.** \
-            *Make sure all items have been claimed on the Split tab.*
-        """
+            f"**Careful! The amount claimed, £{total_claimed:.2f}, does not \
+                match the total bill amount.** *Make sure all items have been \
+                claimed on the Split tab.*"
         )
 
     for friend in friends:
@@ -110,5 +111,6 @@ def summarize(receipt: Receipt, friends: List[Friend]):
         total_cost = get_total_cost_for_friend(items_claimed, friend)
 
         st.markdown(
-            f"{friend.name} | **£{total_cost:.2f}** | {', '.join([item.item_name for item in items_claimed])}"
+            f"{friend.name} | **£{total_cost:.2f}** | \
+                {', '.join([item.item_name for item in items_claimed])}"
         )
