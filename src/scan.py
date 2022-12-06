@@ -14,6 +14,9 @@ def preprocess_parsed_text(parsed_text: str):
 
 @st.cache
 def parse_cropped_image(cropped_image: Image, psm: int) -> str:
+    if cropped_image.format != "JPEG":
+        # Make sure the image type is something Tesseract can handle
+        cropped_image = cropped_image.convert("RGB")
     parsed_text = pytesseract.image_to_string(cropped_image, config=fr'-l eng --psm {psm}')
     parsed_text = preprocess_parsed_text(parsed_text)
     return parsed_text
