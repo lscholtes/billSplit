@@ -1,9 +1,11 @@
+from typing import Union
+
 from PIL import Image
 import streamlit as st
 from streamlit_cropper import st_cropper
 
 
-def upload_and_crop() -> Image:
+def upload_and_crop() -> Union[Image.Image, None]:
 
     with st.expander("File Upload"):
         receipt_image = st.file_uploader("Upload image")
