@@ -30,15 +30,20 @@ class LineEntry:
     @classmethod
     def parse_line_entry_str(cls, line_entry_str: str):        
         # Assume that the last number with two decimal places in the line is the total price for that entry.
-        # Here, \d+(\.|,| )*\d{2} matches anything that looks like a number with two decimal places. 
+        # Here, \d+(?:\.|,| )*\d{2} matches anything that looks like a number with two decimal places. 
         # This is followed up by a negative lookahead for the same thing, so that we match only the last 
         # occurence of this in the line.
-        price_regex = r'(\d+(\.|,| )+\d{2})(?!.*\d+(\.|,| )+\d{2})'
+        decimal_number_regex = r'\d+(?: *(?:\.|,) *)+\d{2}'
+        price_regex = rf'({decimal_number_regex})(?!.*{decimal_number_regex})'
         # We use tuple unpacking to check that there is only one match
         price_match = re.search(price_regex, line_entry_str)
         if price_match is None:  # If no matches are found, just return an object marked as invalid
             return cls(is_valid=False)
         (price_str, ) = price_match.groups()
+
+        # Convert commas to decimal points, remove any whitespace
+        price_str = price_str.replace(",", ".").replace(" ", "")
+        price = float(price_str)
         
         # Once we've grabbed the price, assume that everything that comes before the last occurence of the
         # price is the item name.
@@ -46,9 +51,9 @@ class LineEntry:
         name_match = re.search(name_regex, line_entry_str)
         if name_match is None:
             return cls(is_valid=False)
-        (name_str, ) = name_match.groups()
+        (name, ) = name_match.groups()
         
-        return cls(item_name=name_str, item_cost=float(price_str))
+        return cls(item_name=name, item_cost=price)
 
     @property
     def total_claimed_portions(self):
