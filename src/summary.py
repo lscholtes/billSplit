@@ -101,9 +101,9 @@ def summarize(receipt: Receipt, friends: List[Friend]):
 
     if total_claimed != total_cost:
         st.markdown(
-            f"**Careful! The amount claimed, £{total_claimed:.2f}, does not \
-                match the total bill amount.** *Make sure all items have been \
-                claimed on the Split tab.*"
+            f"""**Careful! The amount claimed, £{total_claimed:.2f}, does not \
+                match the total bill amount.** 
+                *Make sure all items have been claimed on the Split tab.*"""
         )
 
     for friend in friends:
