@@ -30,9 +30,10 @@ class LineEntry:
     @classmethod
     def parse_line_entry_str(cls, line_entry_str: str):        
         # Assume that the last number with two decimal places in the line is the total price for that entry.
-        # Here, \d+\.\d{2} matches any number with two decimal places. This is followed up by a negative 
-        # lookahead for the same thing, so that we match only the last occurence of this in the line.
-        price_regex = r'(\d+\.\d{2})(?!.*\d+\.\d{2})'
+        # Here, \d+(\.|,| )*\d{2} matches anything that looks like a number with two decimal places. 
+        # This is followed up by a negative lookahead for the same thing, so that we match only the last 
+        # occurence of this in the line.
+        price_regex = r'(\d+(\.|,| )+\d{2})(?!.*\d+(\.|,| )+\d{2})'
         # We use tuple unpacking to check that there is only one match
         price_match = re.search(price_regex, line_entry_str)
         if price_match is None:  # If no matches are found, just return an object marked as invalid
