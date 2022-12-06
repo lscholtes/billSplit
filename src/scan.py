@@ -27,7 +27,10 @@ def parse_and_clean(receipt_image: io.BytesIO) -> Receipt:
 
     # This should be False by default, usually OCR works better
     # for receipts with psm=4
-    alternate_psm = st.checkbox("Alternate OCR PSM")
+    alternate_psm = st.checkbox(
+        "Alternate OCR PSM", 
+        help="Toggle this setting if the extracted text is poor quality."
+    )
     psm = 6 if alternate_psm else 4
 
     parsed_text = parse_cropped_image(receipt_image, psm=psm)

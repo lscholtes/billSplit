@@ -1,13 +1,14 @@
 import streamlit as st
 
 from src.friends import parse_friends
+from src.help import display_help
 from src.scan import parse_and_clean
 from src.split import split_bill
 from src.summary import summarize
 from src.upload import upload_and_crop
 
-upload_tab, scan_tab, friends_tab, split_tab, summary_tab = st.tabs(
-    ["Upload", "Scan", "Friends", "Split", "Summary"]
+upload_tab, scan_tab, friends_tab, split_tab, summary_tab, help_tab = st.tabs(
+    ["Upload", "Scan", "Friends", "Split", "Summary", "Help!"]
 )
 
 with upload_tab:
@@ -26,3 +27,6 @@ if receipt_image:
 
     with summary_tab:
         summarize(receipt, friends)
+
+with help_tab:
+    display_help()
