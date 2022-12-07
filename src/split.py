@@ -49,6 +49,13 @@ def create_line_entry(entry: LineEntry, friends: List[Friend]) -> None:
 
 
 def split_bill(receipt: Receipt, friends: List[Friend]) -> None:
+    
+    if receipt is None:
+        st.write("""
+            No data here yet, please ensure that receipt has been properly scanned.
+        """)
+        return
+    
     for entry in receipt.line_entries:
         if entry.is_valid:
             create_line_entry(entry, friends)

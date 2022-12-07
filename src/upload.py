@@ -31,7 +31,7 @@ def upload_and_crop() -> Union[Image.Image, None]:
                 st.markdown(
                     """
                     # Welcome to BillSplit! 👋
-                    To begin splitting, upload a picture of your bill below:
+                    To begin splitting, upload a picture of your bill:
                     """
                 )
             return
