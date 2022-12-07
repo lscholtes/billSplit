@@ -22,11 +22,12 @@ if receipt_image:
     with friends_tab:
         friends = parse_friends()
 
-    with split_tab:
-        split_bill(receipt, friends)
+    if receipt and friends:
+        with split_tab:
+            split_bill(receipt, friends)
 
-    with summary_tab:
-        summarize(receipt, friends)
+        with summary_tab:
+            summarize(receipt, friends)
 
 with help_tab:
     display_help()

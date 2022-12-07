@@ -156,7 +156,7 @@ class Receipt:
         tip_checbox_col, tip_amount_col, _ = st.columns([1, 1, 3])
 
         with tip_checbox_col:
-            add_tip = st.radio("Add tip?", ["No tip", "Even split", "Custom split"])
+            add_tip = st.radio("Add tip/tax?", ["No tip", "Even split", "Custom split"])
 
         if add_tip != "No tip":
             with tip_amount_col:
