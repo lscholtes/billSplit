@@ -55,8 +55,8 @@ def parse_and_clean(receipt_image: io.BytesIO) -> Union[Receipt, None]:
 
         receipt = Receipt.parse_receipt_text(cleaned_text)
 
-        if receipt.total_cost != total_bill_cost:
-            with total_price_container:
+        with total_price_container:
+            if receipt.total_cost != total_bill_cost:
                 st.markdown(
                     f"""
                     ## Wait! ⚠️
@@ -64,6 +64,13 @@ def parse_and_clean(receipt_image: io.BytesIO) -> Union[Receipt, None]:
                     match the total bill amount below, £{receipt.total_cost:.2f}.**  
                     *Please fix the scanned text manually to ensure they match.*"""
                 )
-            return
+                return
+            else:
+                st.markdown(
+                    """
+                    ## Looks good! ✅ 
+                    *The bill total provided matches the bill total scanned, \
+                    proceed to the Friends tab.*"""
+                )
 
         return receipt
