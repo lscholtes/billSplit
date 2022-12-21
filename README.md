@@ -1,3 +1,5 @@
+*[Disclaimer - BillSplit is currently a WIP 🚧]*
+
 # 🧾 BillSplit 🔀
 
 *Picture the scene...*
